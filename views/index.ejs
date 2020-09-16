@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Video Converter POC</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="alert alert-warning" role="alert">
+      Warning: Attempting to upscale a low resolution video to a higher resolution will result in unexpected behaviours. Always upload the highest quality video available to avoid errors.
+    </div>
+    <div class="container">
+      <br />
+      <h1 style="text-align: center;">Online Video Converter POC</h1>
+      <br /><br />
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <!-- <div class="form-inline">
+          <input type="file" name="file"/>
+        <div class="form-group">
+          <button class="btn btn-primary mb-2">
+            Upload
+          </button>
+        </div>
+        </div> -->
+        <div class="input-group">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file" name="file">
+            <label class="custom-file-label" for="file"><a><%= fileUpNameDisplay %></a></label>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-outline-secondary">Upload</button>
+          </div>
+        </div>
+      </form>
+      <form action="/convert" method="post" enctype="multipart/form-data">
+        <!-- <div class="form-group">
+          <input type="file" name="file"/>
+        </div> -->
+        <!-- <div class="form-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" name="file">@</span>
+          </div>
+          <input type="file" class="form-control" placeholder="Please upload">
+        </div> -->
+        <div class="form-group">
+          <label for="to">To Format:</label>
+          <select class="form-control" name="to">
+            <option>mp4</option>
+            <option>avi</option>
+            <option>webm</option>
+            <option>mov</option>
+            <option>wmv</option>
+            <option>3gp</option>
+            <option>f4v</option>
+          </select>
+          <label for="toRes">To Resolution:</label>
+          <select class="form-control" name="toRes">
+            <option>No Resolution change</option>
+            <option>320x200</option>
+            <option>640x480</option>
+            <option>1280x720</option>
+            <option>1920x1080</option>
+            <!-- <option>Validate</option> -->
+            <option>proof</option>
+            <option>of</option>
+            <option>concept</option>
+          </select>
+        </div>
+        <br />
+        <div class="card">
+          <div class="card-body">
+            <img src="./fragments/gifOutput.gif" alt="Preview gif for uploaded video" ></img>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-info btn-block">
+            Convert
+          </button>
+        </div>
+      </form>
+      <form action="/filters" method="post" enctype="multipart/form-data">
+        <button class="btn btn-info btn-block">
+          Display filters
+        </button>
+      </form>
+      <br />
+      <!-- This code snippet above was used to Display filters. -->
+      <form action="/validate" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <!-- <br /><br /> -->
+          <!-- <input type="file" name="file"/> -->
+          <!-- <br /><br /> -->
+          <button class="btn btn-info btn-block">
+            Validate
+          </button>
+        </div>
+        <!-- <div class="card">
+          <div class="card-body" style="white-space: pre; text-align: center;"> -->
+            <!-- The style part above fixes the \n rendering issue -->
+            <!-- <a><%= fileNameDisplay %></a>
+            <a><%= validationData %></a>
+          </div>
+        </div> -->
+
+      </form>
+
+      <form action="/videofilter" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <label for="effect">Video Effect:</label>
+          <select class="form-control" name="effect" >
+            <option>Select an Effect</option>
+            <option>Horizontal Flip(Left-Right)</option>
+            <option>Vertical Flip(Top-Bottom)</option>
+
+          </select>
+
+          </select>
+        </div>
+        <br />
+        <div class="form-group">
+          <button class="btn btn-info btn-block">
+            Apply Video Effect
+          </button>
+        </div>
+      </form>
+      <form action="/audiofilter" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="effect">Audio Effect:</label>
+          <select class="form-control" name="effect">
+            <option>Select an Effect</option>
+            <option>Fade in and out</option>
+            <option>Echo</option>
+
+
+          </select>
+
+          </select>
+        </div>
+        <br />
+        <div class="form-group">
+          <button class="btn btn-info btn-block">
+            Apply Audio Effect
+          </button>
+        </div>
+      </form>
+      <div class="card">
+        <div class="card-body" style="white-space: pre; text-align: center;">
+          <!-- The style part above fixes the \n rendering issue -->
+          <a><%= fileNameDisplay %></a>
+          <a><%= validationData %></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
