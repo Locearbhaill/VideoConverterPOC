@@ -452,6 +452,41 @@ app.post("/videofilter", (req, res) => {
       console.log("Adding Effect Vertical Flip");
       toEffect = 'vflip'
       break;
+    case 'Copy Video':
+      fileName = `videoCoppied${file.name}`;
+      console.log("Adding No Effects");
+      toEffect = 'copy'
+      break;
+    case 'Directional Blur':
+      fileName = `videoBidirecBlur${file.name}`;
+      console.log("Adding Effect Directional Blur");
+      toEffect = 'dblur'
+      break;
+    case 'Stabilise Video':
+      fileName = `videoStabilised${file.name}`;
+      console.log("Stabilising Video");
+      toEffect = 'deshake'
+      break;
+    case 'Erosion Effect':
+      fileName = `videoErosion${file.name}`;
+      console.log("Adding Effect Erosion");
+      toEffect = 'erosion'
+      break;
+    case 'Fill Borders':
+      fileName = `videoFillBorders${file.name}`;
+      console.log("Adding Effect Fill Borders");
+      toEffect = 'fillborders'
+      break;
+    case 'Gaussian Blur':
+      fileName = `videoGaussBlur${file.name}`;
+      console.log("Adding Effect Gaussian Blur");
+      toEffect = 'gblur'
+      break;
+    case 'Add Noise':
+      fileName = `videoNoiseAdded${file.name}`;
+      console.log("Adding Effect Noise");
+      toEffect = 'noise'
+      break;
 
   }
   ffmpeg("tmp/" + file.name) //build ffmpeg command
@@ -508,6 +543,26 @@ app.post("/audiofilter", (req, res) => {
       fileName = `audioEcho${file.name}`;
       console.log("Adding Effect Audio Echo");
       toEffect = 'aecho'
+      break;
+    case 'Reverse Audio':
+      fileName = `audioReversed${file.name}`;
+      console.log("Reversing Audio");
+      toEffect = 'areverse'
+      break;
+    case 'Bass Boost(subwoof frequency boost)':
+      fileName = `audioBassBoost${file.name}`;
+      console.log("Adding Effect Bass Boost");
+      toEffect = 'asubboost'
+      break;
+    case 'Crossfeed (headphone crossfeed filter)':
+      fileName = `audioCrossfeed${file.name}`;
+      console.log("Adding Effect Crossfeed");
+      toEffect = 'crossfeed'
+      break;
+    case 'Normalise':
+      fileName = `audioNormalised${file.name}`;
+      console.log("Adding Effect Audio Normalise");
+      toEffect = 'dynaudnorm'
       break;
 
   }
