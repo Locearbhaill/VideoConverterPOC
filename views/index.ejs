@@ -8,8 +8,12 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
+    <link rel="stylesheet"
+          href="../../../res/dropzone-5.7.0/dist/dropzone.css"> 
+    <link rel="stylesheet" href="./css/global.css">
   </head>
   <body>
+    <script src="../../../res/dropzone-5.7.0/dist/dropzone.js"></script>
     <div class="alert alert-warning" role="alert">
       Warning: Attempting to upscale a low resolution video to a higher resolution will result in unexpected behaviours. Always upload the highest quality video available to avoid errors.
     </div>
@@ -26,15 +30,19 @@
           </button>
         </div>
         </div> -->
+        <!-- _____________________________ -->
         <div class="input-group">
           <div class="custom-file">
             <input type="file" class="custom-file-input" id="file" name="file">
-            <label class="custom-file-label" for="file"><a><%= fileUpNameDisplay %></a></label>
+            <label class="custom-file-label" for="file"><a></a></label>
           </div>
           <div class="form-group">
             <button class="btn btn-outline-secondary">Upload</button>
           </div>
         </div>
+        <!-- _____________________ -->
+        <!-- <div class="dropzone" id="dropzone" name="file">Drop files here to upload</div>
+        <script src="../js/dropzoneHandler.js"></script> -->
       </form>
       <form action="/convert" method="post" enctype="multipart/form-data">
         <!-- <div class="form-group">
@@ -73,7 +81,7 @@
         <br />
         <div class="card">
           <div class="card-body">
-            <img src="./fragments/gifOutput.gif" alt="Preview gif for uploaded video" ></img>
+            <img src="./fragments/Video-Placeholder.jpg" alt="Preview gif for uploaded video" style="text-align: center;"></img>
           </div>
         </div>
         <div class="form-group">
@@ -162,8 +170,8 @@
       <div class="card">
         <div class="card-body" style="white-space: pre; text-align: center;">
           <!-- The style part above fixes the \n rendering issue -->
-          <a><%= fileNameDisplay %></a>
-          <a><%= validationData %></a>
+          <!-- <a><%= fileNameDisplay %></a>
+          <a><%= validationData %></a> -->
         </div>
       </div>
     </div>
