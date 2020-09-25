@@ -6,6 +6,9 @@ const bodyParser = require("body-parser");
 
 const fs = require("fs");
 
+const multer = require('multer');
+const uploader = multer({ dest:'tmp/'});
+
 const fileUpload = require("express-fileupload");
 const { Console } = require("console");
 
@@ -26,6 +29,7 @@ app.use(bodyParser.json(), express.static(__dirname )); // the added .static cal
                                                         // the /fragments file. Otherwise express is not allowed access.
 
 //support parsing of application/x-www-form-urlencoded post data
+
 
 app.use(
   fileUpload({
@@ -181,7 +185,51 @@ app.post("/filters", (req, res) => {
 //-------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------
 
-app.post("/upload", (req, res) => {
+// var upload = function(files) {
+//   var formData = new FormData(),
+//       xhr = new XMLHttpRequest(),
+//       x;
+//   // var x;
+
+//   for (x=0; x < files.length; x = x + 1 ) {
+//       formData.append('file[]', files[x]); // Add all files to upload form
+//   }
+
+//   xhr.onload = function() {
+//       var data = this.responseText; // response from ajax request
+//       console.log(data);
+
+//   }
+
+//   xhr.open('post', 'js/upload.php'); // post to php VideoConverterPOC\php\upload.php 
+//   // The reason this post doesn't work is because I am calling serverside functions and code within 
+//   // the browser script, this means that i need to move the upload function to within the server code.
+//   xhr.send(formData); // post data to php
+//   console.log("Got here");
+//   console.log(formData);
+//   console.log(files);
+//   console.log(files[0]);
+
+//   // for (x=0; x < files.length; x++) { // This is serverside code and therefore will not run as browser script..
+//   //     files[x].mv("tmp/" + files.name, function (err) {
+//   //         if (err) return (err);
+//   //         console.log("File uploaded succesfully");
+//   //     })
+//   // }
+
+
+//   // console.log(formData);
+  
+
+// }
+//TODO: Make this upload function exported for use elsewhere
+//-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
+
+
+app.post("/upload", uploader.single('dropzonefile'), (req, res) => {
+
+  console.log("This fires too");
 
   let file = req.files.file;
   nameSetterGetter(file);
@@ -191,15 +239,13 @@ app.post("/upload", (req, res) => {
     console.log("File Uploaded successfully");
   });
 
-  uploadedBool = true;
+  uploadedBool = true; // Don't use this anymore
 
   var fragment = createFragmentPreview("tmp/" + file.name, "fragments/", 4);
   // using this above code to attempt to run the create preview
 
   res.render('index.ejs', { fileUpNameDisplay: file["name"], validationData: "", fileNameDisplay: "File Name = " + file["name"] }); // Update frontend with created info
-
-
-
+  return res.status(200).send(req.file); // Trying a new method using multer for help. 200 Needs to be sent in this case
 });
 
 //-------------------------------------------------------------------------------

@@ -8,12 +8,12 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
-    <link rel="stylesheet"
-          href="../../../res/dropzone-5.7.0/dist/dropzone.css"> 
+    <!-- <link rel="stylesheet"
+          href="../../../res/dropzone-5.7.0/dist/dropzone.css">  -->
     <link rel="stylesheet" href="./css/global.css">
   </head>
   <body>
-    <script src="../../../res/dropzone-5.7.0/dist/dropzone.js"></script>
+    <!-- <script src="../../../res/dropzone-5.7.0/dist/dropzone.js"></script> -->
     <div class="alert alert-warning" role="alert">
       Warning: Attempting to upscale a low resolution video to a higher resolution will result in unexpected behaviours. Always upload the highest quality video available to avoid errors.
     </div>
@@ -21,7 +21,7 @@
       <br />
       <h1 style="text-align: center;">Online Video Converter POC</h1>
       <br /><br />
-      <form action="/upload" method="post" enctype="multipart/form-data">
+      <form action="/upload" method="post" name="file" class="dropzone" id="dropzonefile" enctype="multipart/form-data">
         <!-- <div class="form-inline">
           <input type="file" name="file"/>
         <div class="form-group">
@@ -41,8 +41,19 @@
           </div>
         </div> -->
         <!-- _____________________ -->
-        <div class="dropzone" id="dropzone">Drop files here to upload</div>
+        <!-- class="fallback"><input name="file" type="file" /> -->
+        <!-- The line above was placed within the div tag however the fallback didn't work-->
+        <div>Drag files here to upload</div>
         <script src="../js/dropzoneHandler.js"></script>
+        <!-- <script>
+
+          Dropzone.options.dropzonefile = {
+            dictDefaultMessage: 'Drag file here to upload',
+            init: function () {
+              console.log("Finally Bois");
+            }
+          };
+        </script> -->
       </form>
       <form action="/convert" method="post" enctype="multipart/form-data">
         <!-- <div class="form-group">
